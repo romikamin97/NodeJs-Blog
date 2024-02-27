@@ -11,6 +11,12 @@ const PORT = process.env.PORT || 5001;
 // Connect to DB
 connectDB();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+
+
 app.use(express.static('public'));
 
 // Tepmlating Engine

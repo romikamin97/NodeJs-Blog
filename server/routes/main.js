@@ -16,16 +16,16 @@ router.get('', async (req, res) => {
     let perPage = 10;
     let page = req.query.page || 1;
 
-    const data = await Post.aggregate([ { $sort: { createdAt: -1 } } ])
-    .skip(perPage * page - perPage)
-    .limit(perPage)
-    .exec();
+    const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
+      .skip(perPage * page - perPage)
+      .limit(perPage)
+      .exec();
 
     const count = await Post.countDocuments({});
     const nextPage = parseInt(page) + 1;
     const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
-    res.render('index', { 
+    res.render('index', {
       locals,
       data,
       current: page,
@@ -36,7 +36,7 @@ router.get('', async (req, res) => {
     console.log("Failled to query and render latest posts");
   }
 
- });
+});
 
 
 /**
@@ -54,7 +54,7 @@ router.get('/post/:id', async (req, res) => {
       description: "Simple Blog created with NodeJs, Express & MongoDb.",
     }
 
-    res.render('post', { 
+    res.render('post', {
       locals,
       data,
       currentRoute: `/post/${slug}`
@@ -77,20 +77,28 @@ router.post('/search', async (req, res) => {
       description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
 
+
     let searchTerm = req.body.searchTerm;
     const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "")
+    let searchPredicates = [
+      { title: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
+      { body: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
+    ]
+    if (!isNaN(Date.parse(searchTerm))) {
+      const date = new Date(searchTerm + " UTC")
+
+      const nextday = new Date()
+      nextday.setDate(date.getDate() + 1);
+      searchPredicates.push({ createdAt: { $gte: date, $lt: nextday } })
+    }
 
     const data = await Post.find({
-      $or: [
-        { title: { $regex: new RegExp(searchNoSpecialChar, 'i') }},
-        { body: { $regex: new RegExp(searchNoSpecialChar, 'i') }}
-      ]
+      $or: searchPredicates
     });
 
     res.render("search", {
       data,
-      locals,
-      currentRoute: '/'
+      locals
     });
 
   } catch (error) {
@@ -98,6 +106,7 @@ router.post('/search', async (req, res) => {
   }
 
 });
+
 
 
 /**
