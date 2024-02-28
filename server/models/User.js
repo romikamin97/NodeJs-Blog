@@ -47,7 +47,7 @@ UserSchema.statics.findByToken = async function (token) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return await this.findOne({ _id: decoded._id });
   } catch (err) {
-    throw new Error(`Error verifying token: ${err.message}`);
+    return NaN;
   }
 };
 

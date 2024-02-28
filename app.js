@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const cookies = require("cookie-parser");
 
 const connectDB = require('./server/config/db');
 
@@ -13,6 +14,7 @@ connectDB();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookies());
 
 
 

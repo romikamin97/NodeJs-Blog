@@ -27,10 +27,19 @@
           stroke-linejoin="round" />
       </svg>
     </button>
+    <% if(!locals.isLoggedIn){ %>
+      <button class="signupBtn" aria-expanded="false">
+        Signup
+      </button>
+      <button class="loginBtn" aria-expanded="false">
+        Login
+      </button>
+      <% } else{ %>
+        <button class="loginBtn" aria-expanded="false">
+          Logout
+        </button>
+        <% } %>
 
-    <button class="signupBtn" aria-expanded="false">
-      Signup
-    </button>
   </div>
 
 </header>

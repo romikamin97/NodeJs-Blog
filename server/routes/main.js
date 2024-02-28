@@ -3,15 +3,20 @@ const router = express.Router();
 const Post = require('../models/Post');
 const User = require('../models/User');
 
+const identifyUser = require('../middleware/IdentifyUser')
+
+const loginController = require("../controllers/login")
+
 /**
  * GET /
  * HOME
 */
-router.get('', async (req, res) => {
+router.get('', identifyUser, async (req, res) => {
   try {
     const locals = {
       title: "NodeJs Blog",
-      description: "Simple Blog created with NodeJs, Express & MongoDb."
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
+      isLoggedIn: req.session.loggedIn
     }
 
     let perPage = 10;
@@ -133,6 +138,11 @@ async function signupController(req, res) {
 }
 router.post('/signup', signupController);
 
+/*
+ * POST /
+ * login
+ */
+router.post('/login', loginController);
 
 
 /**

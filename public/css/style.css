@@ -21,10 +21,21 @@ body {
   margin: 0;
 }
 
-a { color: var(--black); }
-h1 { font-size: var(--font-size-xl); }
-h2 { font-size: var(--font-size-lg); }
-h3 { font-size: var(--font-size-md); }
+a {
+  color: var(--black);
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+}
+
+h3 {
+  font-size: var(--font-size-md);
+}
 
 input[type="text"],
 input[type="search"],
@@ -42,10 +53,10 @@ textarea {
 .btn {
   background-color: var(--black);
   border: none;
-  color: white; 
+  color: white;
   padding: 16px 32px;
   text-decoration: none;
-  margin: 4px 2px; 
+  margin: 4px 2px;
   cursor: pointer;
 }
 
@@ -86,17 +97,17 @@ img {
   align-items: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 
-  "logo button"
-  "menu menu";
+  grid-template-areas:
+    "logo button"
+    "menu menu";
   padding-top: 10px;
 }
 
 @media only screen and (min-width: 768px) {
   .header {
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: 
-    "logo menu button";
+    grid-template-areas:
+      "logo menu button";
   }
 }
 
@@ -117,7 +128,9 @@ img {
   grid-area: menu;
 }
 
-.header__logo, .header__nav, .header__button {
+.header__logo,
+.header__nav,
+.header__button {
   width: 100%;
 }
 
@@ -277,7 +290,7 @@ img {
   display: inline-block;
 }
 
-.admin-post-controls .btn  {
+.admin-post-controls .btn {
   display: inline-block;
   background-color: var(--black);
   color: var(--gray-light);
@@ -337,9 +350,13 @@ img {
   color: var(--black);
 }
 
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box
+}
 
-.signupForm {
+
+.signupForm,
+.loginForm {
   visibility: hidden;
   transform: translateY(-100px);
   background-color: var(--black);
@@ -351,18 +368,22 @@ img {
 }
 
 
-.signupForm.open {
+.signupForm.open,
+.loginForm.open {
   transform: translateY(0);
   transition: transform 0.1s;
 }
+
 /* Add padding to container elements */
-.signupContainer {
+.signupContainer,
+.loginContainer {
   position: relative;
   padding: 16px;
 }
 
 /* Full-width input fields */
-  input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -371,7 +392,8 @@ img {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus,
+input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -389,17 +411,20 @@ button {
 }
 
 button:hover {
-  opacity:1;
+  opacity: 1;
 }
 
 /* Extra styles for the cancel button */
-.cancelBtn {
+.cancelBtn,
+.loginCancelButton {
   padding: 14px 20px;
   background-color: #f44336;
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelBtn, .submitBtn {
+.cancelBtn,
+.submitBtn,
+.loginCancelButton {
   float: left;
   width: 50%;
 }
@@ -414,7 +439,9 @@ button:hover {
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
+
+  .cancelbtn,
+  .submitBtn {
     width: 100%;
   }
 }

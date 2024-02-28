@@ -19,30 +19,35 @@ function handleSearchBar() {
   });
 }
 
-function handleSignupForm() {
-  const signupButton = document.querySelector('.signupBtn');
-  const signupForm = document.querySelector('.signupForm');
-  const usernameInput = document.getElementById('username');
-  const signupCancel = document.getElementById('cancelBtn');
+function handleForm(formName) {
+  const formButton = document.querySelector('.' + formName + 'Btn');
+  if (!formButton) {
+    return;
+  }
+  const form = document.querySelector('.' + formName + 'Form');
+  const usernameInput = document.getElementById(formName + 'Username');
+  const cancelButton = document.getElementById(formName + 'CancelBtn');
 
-  signupButton.addEventListener('click', function () {
-    signupForm.style.visibility = 'visible';
-    signupForm.classList.add('open');
+  formButton.addEventListener('click', function () {
+    form.style.visibility = 'visible';
+    form.classList.add('open');
     this.setAttribute('aria-expanded', 'true');
     usernameInput.focus();
   });
 
-  signupCancel.addEventListener('click', function () {
+  cancelButton.addEventListener('click', function () {
     console.log("clicked")
-    signupForm.style.visibility = 'hidden';
-    signupForm.classList.remove('open');
+    form.style.visibility = 'hidden';
+    form.classList.remove('open');
     usernameInput.value = "";
     this.setAttribute('aria-expanded', 'false');
   });
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
   handleSearchBar()
-  handleSignupForm()
+  handleForm("signup")
+  handleForm("login")
 });
 
