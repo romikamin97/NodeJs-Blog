@@ -1,0 +1,31 @@
+<div class="signupForm">
+  <div class="signupContainer">
+    <form action="/signup" method="POST" class="signup__form" role="signup">
+      <label for="username"><b>Username</b></label>
+      <input type="text" id="username" name="username" placeholder="Username">
+      <label for="password"><b>Password</b></label>
+      <input type="text" id="password" name="password" placeholder="Password">
+      <label for="password"><b>Confirm Password</b></label>
+      
+      <script>
+        function cPasswordOnchange() {
+          const password = document.getElementById('password');
+          const cpassword = document.getElementById('cpassword');
+          console.log(password.value)
+          if (cpassword.value != password.value) {
+            alert('Password and confirm password are not equal!')
+          }
+        }
+      
+      </script>
+      <input type="text" id="cpassword" name="cpassword" placeholder="Confirm Password" onchange="cPasswordOnchange()">
+      <div class="clearfix">
+        
+        <button type="submit" class="submitBtn">Sign Up</button>
+        <button type="button" class="cancelBtn" id="cancelBtn">Cancel</button>
+        
+      </div>
+    </form>
+
+  </div>
+</div>
