@@ -112,30 +112,26 @@ router.post('/search', async (req, res) => {
  * POST /
  * Signup
 */
-router.post('/signup', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const cpassword = req.body.cpassword;
-
-  const data = await User.find({
-    username: username
+async function signupController(req, res) {
+  const { username, password, cpassword } = req.body;
+  const user = await User.findOne({
+    username
   });
-  if (data.length > 0) {
-    console.log("Username taken!")
-    return
+  if (user) {
+    return res.status(401).json({ message: 'Username is already in use' });
   }
-  if(password != cpassword) {
-    console.log("Password and confirm password are not equal!")
-    //alert("Password and confirm password are not equal!");
-    return
+  if (password != cpassword) {
+    return res.status(401).json({ message: 'Passwords do not match' });
   }
-  User.insertMany([{
-    username: username,
-    password: password
-  }])
-
-
-});
+  const userToSave = new User({ username, password });
+  await userToSave.save().then(function (_) {
+    res.status(204).redirect('/');
+  }).catch(function (err) {
+    console.log("err saving to db")
+    res.status(500).json({ message: 'Server error: ' + err }).send();
+  })
+}
+router.post('/signup', signupController);
 
 
 
