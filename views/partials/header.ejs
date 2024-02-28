@@ -35,9 +35,17 @@
         Login
       </button>
       <% } else{ %>
-        <button class="loginBtn" aria-expanded="false">
-          Logout
-        </button>
+        <nav class="header__nav">
+          <ul>
+            <a href="/Profile" class="">Profile</a>
+          </ul>
+        </nav>
+        <div class="header__button">
+          <button class="logoutBtn" aria-expanded="false">
+            Logout
+          </button>
+          
+        </div>
         <% } %>
 
   </div>

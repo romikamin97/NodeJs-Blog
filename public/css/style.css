@@ -90,6 +90,29 @@ img {
   border-radius: var(--border-radius);
 }
 
+/* Profile Section */
+.profile-image {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.one {
+  background-image: url('https://via.placeholder.com/400x200');
+}
+
+.two {
+  background-image: url('https://via.placeholder.com/200x200');
+}
+
+.three {
+  background-image: url('https://via.placeholder.com/200x400');
+}
 
 /* Main Header */
 .header {
