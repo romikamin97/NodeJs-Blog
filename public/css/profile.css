@@ -26,6 +26,7 @@
 
 .user-post-controls .edit-btn,
 .user-post-controls .btn {
+    font-family: "Georgia", sans-serif;
     background-color: var(--black);
     color: var(--gray-light);
     border: 0;
@@ -62,6 +63,7 @@
 
 h2,
 p {
+    font-family: "Georgia", sans-serif;
     margin: 0 0 20px;
     font-weight: 400;
     color: #999;
@@ -90,6 +92,7 @@ textarea {
 }
 
 .contact-form button {
+    font-family: "Georgia", sans-serif;
     width: 100%;
     padding: 10px;
     border: none;
@@ -100,6 +103,7 @@ textarea {
 }
 
 .close {
+    font-family: "Georgia", sans-serif;
     color: #aaa;
     float: right;
     font-size: 28px;

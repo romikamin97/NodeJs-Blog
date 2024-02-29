@@ -40,6 +40,7 @@
 .header__button button,
 .header__user__button button {
     display: flex;
+    font-family: "Georgia", sans-serif;
     gap: 0.3rem;
     align-items: center;
     border: 0;
@@ -58,6 +59,7 @@
 
 /* Header -> Navigation */
 .header__nav ul {
+    font-family: "Georgia", sans-serif;
     list-style-type: none;
     display: flex;
     gap: 1rem;
