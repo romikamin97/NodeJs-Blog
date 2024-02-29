@@ -23,7 +23,7 @@ router.get('', async (req, res) => {
       username: req.session.username
     }
 
-    const perPage = 10
+    const perPage = 5
     const page = req.query.page || 1
 
     const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
@@ -33,13 +33,16 @@ router.get('', async (req, res) => {
 
     const count = await Post.countDocuments({})
     const nextPage = parseInt(page) + 1
+    const prevPage = nextPage - 2
     const hasNextPage = nextPage <= Math.ceil(count / perPage)
+    const haPrevPage = prevPage > 0
 
     res.render('index', {
       locals,
       data,
       current: page,
-      nextPage: hasNextPage ? nextPage : null
+      nextPage: hasNextPage ? nextPage : null,
+      prevPage: haPrevPage ? prevPage : null
     })
   } catch (error) {
     console.log('Failled to query and render latest posts')

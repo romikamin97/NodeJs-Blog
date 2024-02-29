@@ -246,13 +246,26 @@ img {
   padding: 15px;
 }
 
-
 .pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination_left,
+.pagination_right {
   font-size: 1.3rem;
   color: var(--gray);
   text-decoration: none;
   margin-top: 40px;
-  display: inline-block;
+}
+
+.pagination_right {
+  display: flex;
+  justify-content: right;
+}
+.pagination_left {
+  display: flex;
+  justify-content: left;
 }
 
 .pagination:hover {
