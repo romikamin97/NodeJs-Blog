@@ -8,6 +8,7 @@ const logoutController = require('../controllers/logout')
 const authorizeUser = require('../middleware/authorization')
 const signupController = require('../controllers/signup')
 const { postController, postCommentController } = require('../controllers/post')
+const searchController = require('../controllers/search')
 
 /**
  * GET /
@@ -47,6 +48,16 @@ router.get('', async (req, res) => {
 
 /**
  * GET /
+ * About
+*/
+router.get('/about', (req, res) => {
+  res.render('about', {
+    currentRoute: '/about'
+  })
+})
+
+/**
+ * GET /
  * Post :id
 */
 router.get('/post/:id', postController)
@@ -61,40 +72,7 @@ router.post('/post/:id/submit-comment', postCommentController)
  * POST /
  * Post - searchTerm
 */
-router.post('/search', async (req, res) => {
-  try {
-    const locals = {
-      title: 'Seach',
-      description: 'Simple Blog created with NodeJs, Express & MongoDb.'
-    }
-
-    const searchTerm = req.body.searchTerm
-    const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, '')
-    const searchPredicates = [
-      { title: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
-      { body: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
-      { user: { $regex: new RegExp(searchNoSpecialChar, 'i') } }
-    ]
-    if (!isNaN(Date.parse(searchTerm))) {
-      const date = new Date(searchTerm + ' UTC')
-
-      const nextday = new Date()
-      nextday.setDate(date.getDate() + 1)
-      searchPredicates.push({ createdAt: { $gte: date, $lt: nextday } })
-    }
-
-    const data = await Post.find({
-      $or: searchPredicates
-    })
-
-    res.render('search', {
-      data,
-      locals
-    })
-  } catch (error) {
-    console.log(error)
-  }
-})
+router.post('/search', searchController)
 
 /**
  * POST /
@@ -113,16 +91,6 @@ router.post('/login', loginController)
  * logout
  */
 router.get('/logout', authorizeUser, logoutController)
-
-/**
- * GET /
- * About
-*/
-router.get('/about', (req, res) => {
-  res.render('about', {
-    currentRoute: '/about'
-  })
-})
 
 /**
  * GET /
