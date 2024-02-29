@@ -1,6 +1,4 @@
-const express = require('express')
-const router = express.Router()
-const Post = require('../models/post')
+const router = require('express').Router()
 
 const loginController = require('../controllers/login')
 const { profileController, submitPostController, deletePostController, editPostController } = require('../controllers/profile')
@@ -9,45 +7,13 @@ const authorizeUser = require('../middleware/authorization')
 const signupController = require('../controllers/signup')
 const { postController, postCommentController } = require('../controllers/post')
 const searchController = require('../controllers/search')
+const homeController = require('../controllers/home')
 
 /**
  * GET /
  * HOME
 */
-router.get('', async (req, res) => {
-  try {
-    const locals = {
-      title: 'NodeJs Blog',
-      description: 'Simple Blog created with NodeJs, Express & MongoDb.',
-      isLoggedIn: req.session.loggedIn,
-      username: req.session.username
-    }
-
-    const perPage = 5
-    const page = req.query.page || 1
-
-    const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
-      .skip(perPage * page - perPage)
-      .limit(perPage)
-      .exec()
-
-    const count = await Post.countDocuments({})
-    const nextPage = parseInt(page) + 1
-    const prevPage = nextPage - 2
-    const hasNextPage = nextPage <= Math.ceil(count / perPage)
-    const haPrevPage = prevPage > 0
-
-    res.render('index', {
-      locals,
-      data,
-      current: page,
-      nextPage: hasNextPage ? nextPage : null,
-      prevPage: haPrevPage ? prevPage : null
-    })
-  } catch (error) {
-    console.log('Failled to query and render latest posts')
-  }
-})
+router.get('', homeController)
 
 /**
  * GET /
