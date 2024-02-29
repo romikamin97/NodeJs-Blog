@@ -50,10 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
   handleForm('login')
 })
 
-function openForm () {
-  document.getElementById('myForm').style.display = 'block'
-}
-
-function closeForm () {
-  document.getElementById('myForm').style.display = 'none'
+function onClickEdit (btn, title, content) {
+  console.log(title)
+  console.log(content)
+  document.querySelector('.edit-title').placeholder = title
+  document.querySelector('.edit-content').placeholder = content
+  const modal = btn.getAttribute('data-modal')
+  const modalElement = document.getElementById(modal)
+  // modalElement.
+  modalElement.style.display = 'block'
 }

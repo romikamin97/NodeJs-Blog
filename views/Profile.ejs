@@ -28,16 +28,51 @@
         <%= post.title %> &nearr;
       </a>
       <div class="user-post-controls">
-        <button class="button" data-modal="modalOne">Contact Us</button>
-        <form action="/profile/delete-post/<%= post._id %>" method="POST">
-          <input type="submit" value="Delete" class="btn-delete btn">
-        </form>
+        <div class='user-post-controls child'>
+          <button class="edit-btn" data-modal="modalOne"
+            onclick="onClickEdit(this, '<%= post.title %>', '<%= post.body %>')">Edit</button>
+        </div>
+        <div class='user-post-controls child'>
+          <form action="/profile/delete-post/<%= post._id %>" method="POST">
+            <input type="submit" value="Delete" class="btn-delete btn">
+          </form>
+        </div>
 
       </div>
 
     </li>
-
     <% }) %>
+      <div id="modalOne" class="modal">
+        <div class="modal-content">
+          <div class="contact-form">
+            <a class="close" onclick="modaleCloseOnClick(this)">&times;</a>
+            <form action="/">
+              <h2>Edit Post</h2>
+              <span>Title</span>
+              <div>
+                <textarea rows="1" class="edit-title"></textarea>
+              </div>
+              <span>Content</span>
+              <div>
+                <textarea rows="4" class="edit-content"></textarea>
+              </div>
+              <button type="submit" href="/">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
 </ul>
+
+<script>
+  function modaleCloseOnClick(btn) {
+    let modal = btn.closest(".modal");
+    modal.style.display = "none";
+  };
+  window.onclick = function (event) {
+    if (event.target.className === "modal") {
+      event.target.style.display = "none";
+    }
+  };
+</script>
 
 </html>
