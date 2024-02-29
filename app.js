@@ -26,8 +26,11 @@ app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
+const authMiddleware = require('./server/middleware/IdentifyUser')
+const router = require('./server/routes/main')
 
-app.use('/', require('./server/routes/main'));
+app.use(authMiddleware)
+app.use('/', router);
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
