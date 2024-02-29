@@ -50,7 +50,7 @@
     border: 2px solid transparent;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--black);
+    color: #333;
 }
 
 .header__button button:hover {
@@ -73,9 +73,10 @@
 }
 
 .header__nav ul a.active {
-    color: #7E7E7E;
+    color: #333;
 }
 
 .header__nav ul a:hover {
     text-decoration: underline;
 }
+

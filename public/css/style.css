@@ -22,7 +22,7 @@ body {
 }
 
 a {
-  color: var(--black);
+  color: #333;
 }
 
 h1 {
@@ -67,8 +67,10 @@ textarea {
 
 
 img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
-  height: auto;
 }
 
 /* Layout */
@@ -149,7 +151,7 @@ img {
 
 .article-list__date {
   font-size: 1rem;
-  color: var(--gray);
+  color: var(--black);
   width: 100px;
   display: inline-block;
   width: 260px;
@@ -367,4 +369,19 @@ button:hover {
   .submitBtn {
     width: 100%;
   }
+}
+
+.about_img{
+  float: left;
+  width: 40%;
+}
+
+.about_text {
+  float: right;
+  width: 50%;
+}
+
+.about_page {
+  display:inline-block;
+  justify-content: space-between;
 }
