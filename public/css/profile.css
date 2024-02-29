@@ -1,0 +1,15 @@
+.clearPostBtn {
+    background-color: #aa5f59;
+}
+
+.postBtn {
+    background-color: #3d41af;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.clearPostBtn,
+.postBtn {
+    float: left;
+    width: 50%;
+
+}

@@ -4,7 +4,7 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 const loginController = require('../controllers/login')
-const profileController = require('../controllers/profile')
+const { profileController, submitPostController } = require('../controllers/profile')
 const logoutController = require('../controllers/logout')
 
 /**
@@ -158,5 +158,11 @@ router.get('/about', (req, res) => {
  * Profile
 */
 router.get('/profile', profileController)
+
+/**
+ * POST /
+ * Submit post
+*/
+router.post('/profile/submit-post', submitPostController)
 
 module.exports = router

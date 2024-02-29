@@ -1,24 +1,31 @@
+<html>
+<!-- <style>
+    @import "style.css";
+  </style> -->
 <div class="author">
   <h1 class="author__heading">My Profile</h1>
   <img src="/img/profile-image-girl.jpg" alt="girl working on her computer" class="profile-image">
 </div>
 
 
-
-<div class="admin-title">
+<ul class="user-posts">
+  <h2>New Post:</h2>
+  <form action="/profile/submit-post" method="POST" class="postForm">
+    <label for="postTitle"><b>Title</b></label>
+    <input type="text" id="postTitle" name="postTitle" placeholder="Title">
+    <input type="text" id="postContent" name="postContent" placeholder="Content">
+    <div class="clearfix">
+        <button type="submit" class="postBtn">Post</button>
+        <button type="button" class="clearPostBtn" id="clearPostBtn">Clear</button>
+    </div>
+  </form>
   <h2>My Posts:</h2>
-  <a href="/add-post" class="button">+ Add New</a>
-</div>
-
-<ul class="admin-posts">
-
-  <% data.forEach(post => { %>
-   
+  <% data.forEach(post=> { %>
     <li>
       <a href="/post/<%= post._id %>">
         <%= post.title %> &nearr;
       </a>
-      <div class="admin-post-controls">
+      <div class="user-post-controls">
         <a href="/edit-post/<%= post._id %>" class="btn">Edit</a>
 
         <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
@@ -29,5 +36,7 @@
 
     </li>
 
-  <% }) %>
+    <% }) %>
 </ul>
+
+</html>

@@ -18,4 +18,22 @@ async function profileController (req, res) {
   }
 }
 
-module.exports = profileController
+async function submitPostController (req, res) {
+  try {
+    const username = req.session.username
+    const { postTitle, postContent } = req.body
+    const postToSave = new Post({ title: postTitle, body: postContent, user: username })
+
+    await postToSave.save().then(function (_) {
+      res.status(204).redirect('/profile')
+    }).catch(function (err) {
+      console.log('err saving to db')
+      res.status(500).json({ message: 'Server error: ' + err }).send()
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Server error' })
+  }
+}
+
+module.exports = { profileController, submitPostController }
