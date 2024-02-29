@@ -3,7 +3,7 @@ const User = require('../models/user')
 const identifyUser = async (req, res, next) => {
   try {
     req.session = { loggedIn: false }
-    token = req.cookies.token
+    const token = req.cookies.token
     if (token) {
       const token = req.cookies.token
       const user = await User.findByToken(token)

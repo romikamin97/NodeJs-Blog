@@ -1,9 +1,7 @@
-const User = require('../models/user')
 const Post = require('../models/post')
 
 async function profileController (req, res) {
   try {
-    console.log(req.session.username)
     const searchPredicates = [{ user: req.session.username }]
 
     const data = await Post.find({

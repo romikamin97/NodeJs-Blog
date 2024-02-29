@@ -118,7 +118,7 @@ async function signupController (req, res) {
   if (user) {
     return res.status(401).json({ message: 'Username is already in use' })
   }
-  if (password != cpassword) {
+  if (password !== cpassword) {
     return res.status(401).json({ message: 'Passwords do not match' })
   }
   const userToSave = new User({ username, password })
