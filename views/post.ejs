@@ -9,42 +9,47 @@
     </div>
     <div>
         <h2>Comments</h2>
-        <% locals.commentsData.forEach(comment=> { %>
-            <!-- comments container -->
-            <div class="comment_block">
-                <!-- 
-        Comments are structured in the following way:
-
-        {ul} defines a new comment (singular)
-        {li} defines a new reply to the comment {ul}
-        -->
-                <!-- new comment -->
-                <div class="new_comment">
-                    <!-- build comment -->
-                    <ul class="user_comment">
-                        <div class="comment_body">
-                            <p>
-                                <%= comment.content %>
-                            </p>
-                        </div>
-                        <!-- comments toolbar -->
-                        <div class="comment_toolbar">
-                            <!-- inc. date and time -->
-                            <div class="comment_details">
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i>
-                                        <%= comment.createdAt %>
-                                    </li>
-                                    <li><i class="fa fa-pencil"></i> <span class="user">
-                                            <%= comment.user %>
-                                        </span></li>
-                                </ul>
+        <div class="comment_block">
+            <div class="new_comment">
+                <ul class="user_comment">
+                    <% if(locals.commentsData.length > 0){ %>
+                        <% locals.commentsData.forEach(comment=> { %>
+                            <div class="comment_body">
+                                <p>
+                                    <%= comment.content %>
+                                </p>
                             </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
+                            <div class="comment_toolbar">
+                                <div class="comment_details">
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i>
+                                            <%= comment.createdAt %>
+                                        </li>
+                                        <li><i class="fa fa-pencil"></i> <span class="user">
+                                                <%= comment.user %>
+                                            </span></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-            <% }) %>
+                            <% }) %>
+                                <% } else {%>
+                                    <p>There are no comments yet. Be the first!</p>
+
+                                    <% } %>
+                </ul>
+            </div>
+            <% if(locals.isLoggedIn){ %>
+                <div class="create_new_comment">
+                    <form action="<%= currentRoute %>/submit-comment" method="POST" class="create_new_comment">
+                        <input type="text" name="commentContent" placeholder="Join the conversation..">
+                        <div class="clearfix">
+                            <button type="submit" class="commentBtn">Comment</button>
+                        </div>
+                      </form>
+                </div>
+                <% } %>
+        </div>
+
     </div>
 </div>

@@ -3,11 +3,11 @@ const router = express.Router()
 const Post = require('../models/post')
 
 const loginController = require('../controllers/login')
-const { profileController, submitPostController } = require('../controllers/profile')
+const { profileController, submitPostController, deletePostController } = require('../controllers/profile')
 const logoutController = require('../controllers/logout')
 const authorizeUser = require('../middleware/authorization')
 const signupController = require('../controllers/signup')
-const Comment = require('../models/comment')
+const { postController, postCommentController } = require('../controllers/post')
 
 /**
  * GET /
@@ -49,32 +49,13 @@ router.get('', async (req, res) => {
  * GET /
  * Post :id
 */
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postId = req.params.id
+router.get('/post/:id', postController)
 
-    const postData = await Post.findById({ _id: postId })
-
-    if (!postData) {
-      res.status(404).send()
-    }
-    const commentsData = await Comment.find({ postId })
-    console.log(commentsData)
-
-    const locals = {
-      postData,
-      commentsData,
-      description: 'Simple Blog created with NodeJs, Express & MongoDb.'
-    }
-
-    res.render('post', {
-      locals,
-      currentRoute: `/post/${postId}`
-    })
-  } catch (error) {
-    console.log(error)
-  }
-})
+/**
+ * Post /
+ * Submit a comment to a post
+*/
+router.post('/post/:id/submit-comment', postCommentController)
 
 /**
  * POST /
@@ -154,5 +135,11 @@ router.get('/profile', authorizeUser, profileController)
  * Submit post
 */
 router.post('/profile/submit-post', authorizeUser, submitPostController)
+
+/**
+ * POST /
+ * Delete post
+*/
+router.post('/profile/delete-post/:id', authorizeUser, deletePostController)
 
 module.exports = router

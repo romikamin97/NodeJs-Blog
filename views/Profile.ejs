@@ -3,7 +3,9 @@
     @import "style.css";
   </style> -->
 <div class="author">
-  <h1 class="author__heading"><%= locals.username %>'s Profile</h1>
+  <h1 class="author__heading">
+    <%= locals.username %>'s Profile
+  </h1>
   <img src="/img/profile-image-girl.jpg" alt="girl working on her computer" class="profile-image">
 </div>
 
@@ -15,8 +17,8 @@
     <input type="text" id="postTitle" name="postTitle" placeholder="Title">
     <input type="text" id="postContent" name="postContent" placeholder="Content">
     <div class="clearfix">
-        <button type="submit" class="postBtn">Post</button>
-        <button type="button" class="clearPostBtn" id="clearPostBtn">Clear</button>
+      <button type="submit" class="postBtn">Post</button>
+      <button type="button" class="clearPostBtn" id="clearPostBtn">Clear</button>
     </div>
   </form>
   <h2>My Posts:</h2>
@@ -26,9 +28,10 @@
         <%= post.title %> &nearr;
       </a>
       <div class="user-post-controls">
-        <a href="/edit-post/<%= post._id %>" class="btn">Edit</a>
-
-        <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
+        <p>
+          <button class="button" data-modal="modalOne">Contact Us</button>
+        </p>
+        <form action="/profile/delete-post/<%= post._id %>" method="POST">
           <input type="submit" value="Delete" class="btn-delete btn">
         </form>
 

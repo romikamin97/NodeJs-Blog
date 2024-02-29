@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function handleSearchBar () {
   const searchButton = document.querySelector('.searchBtn')
   const searchBar = document.querySelector('.searchBar')
@@ -48,3 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
   handleForm('signup')
   handleForm('login')
 })
+
+function openForm () {
+  document.getElementById('myForm').style.display = 'block'
+}
+
+function closeForm () {
+  document.getElementById('myForm').style.display = 'none'
+}

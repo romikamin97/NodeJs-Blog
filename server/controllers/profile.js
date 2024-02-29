@@ -36,4 +36,16 @@ async function submitPostController (req, res) {
   }
 }
 
-module.exports = { profileController, submitPostController }
+async function deletePostController (req, res) {
+  try {
+    console.log('deleting post')
+    const postId = req.params.id
+    await Post.deleteOne({ _id: postId })
+    res.status(204).redirect('/profile')
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Server error' })
+  }
+}
+
+module.exports = { profileController, submitPostController, deletePostController }
