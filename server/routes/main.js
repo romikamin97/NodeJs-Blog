@@ -7,6 +7,7 @@ const { profileController, submitPostController } = require('../controllers/prof
 const logoutController = require('../controllers/logout')
 const authorizeUser = require('../middleware/authorization')
 const signupController = require('../controllers/signup')
+const Comment = require('../models/comment')
 
 /**
  * GET /
@@ -49,19 +50,25 @@ router.get('', async (req, res) => {
 */
 router.get('/post/:id', async (req, res) => {
   try {
-    const slug = req.params.id
+    const postId = req.params.id
 
-    const data = await Post.findById({ _id: slug })
+    const postData = await Post.findById({ _id: postId })
+
+    if (!postData) {
+      res.status(404).send()
+    }
+    const commentsData = await Comment.find({ postId })
+    console.log(commentsData)
 
     const locals = {
-      title: data.title,
+      postData,
+      commentsData,
       description: 'Simple Blog created with NodeJs, Express & MongoDb.'
     }
 
     res.render('post', {
       locals,
-      data,
-      currentRoute: `/post/${slug}`
+      currentRoute: `/post/${postId}`
     })
   } catch (error) {
     console.log(error)
