@@ -9,7 +9,7 @@ async function profileController (req, res) {
     })
 
     res.render('profile', {
-      locals: { isLoggedIn: req.session.loggedIn },
+      locals: { isLoggedIn: req.session.loggedIn, username: req.session.username },
       currentRoute: '/profile',
       data
     })
