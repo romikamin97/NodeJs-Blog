@@ -1,6 +1,4 @@
 <header class="header">
-  <a href="/" class="header__logo">NodeJs</a>
-
   <nav class="header__nav">
     <ul>
       <li>
@@ -27,13 +25,17 @@
           stroke-linejoin="round" />
       </svg>
     </button>
+  </div>
+  <div class="header__user">
     <% if(!locals.isLoggedIn){ %>
+      <div class="header__user__button">
       <button class="signupBtn" aria-expanded="false">
         Signup
       </button>
       <button class="loginBtn" aria-expanded="false">
         Login
       </button>
+    </div>
       <% } else{ %>
         <nav class="header__nav">
           <ul>
@@ -44,7 +46,6 @@
           </ul>
         </nav>
         <% } %>
-
   </div>
 
 </header>
