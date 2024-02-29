@@ -54,9 +54,7 @@ router.get('', async (req, res) => {
  * About
 */
 router.get('/about', (req, res) => {
-  res.render('about', {
-    currentRoute: '/about'
-  })
+  res.render('about')
 })
 
 /**

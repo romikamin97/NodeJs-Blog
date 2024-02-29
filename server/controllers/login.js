@@ -6,13 +6,13 @@ async function loginController (req, res) {
     const user = await User.findOne({ username })
 
     if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).send('<script>alert("Invalid username or password"); window.location.href=document.referrer;</script>')
     }
 
     const isMatch = await user.comparePassword(password)
 
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).send('<script>alert("Invalid username or password"); window.location.href=document.referrer;</script>')
     }
 
     const token = user.generateAuthToken()
