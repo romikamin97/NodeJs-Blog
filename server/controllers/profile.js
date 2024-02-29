@@ -1,5 +1,5 @@
-const User = require("../models/User")
-const Post = require('../models/Post');
+const User = require("../models/user")
+const Post = require('../models/post');
 
 async function profileController(req, res) {
     try {
@@ -11,7 +11,7 @@ async function profileController(req, res) {
         });
 
 
-        res.render('Profile', {
+        res.render('profile', {
             locals: {isLoggedIn: req.session.loggedIn},
             currentRoute: '/profile',
             data

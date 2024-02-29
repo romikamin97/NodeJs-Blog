@@ -26,7 +26,7 @@ app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
-const authMiddleware = require('./server/middleware/IdentifyUser')
+const authMiddleware = require('./server/middleware/identify_user')
 const router = require('./server/routes/main')
 
 app.use(authMiddleware)
