@@ -6,6 +6,7 @@ const User = require('../models/user')
 const loginController = require('../controllers/login')
 const { profileController, submitPostController } = require('../controllers/profile')
 const logoutController = require('../controllers/logout')
+const authorizeUser = require('../middleware/authorization')
 
 /**
  * GET /
@@ -141,7 +142,7 @@ router.post('/login', loginController)
  * POST /
  * logout
  */
-router.get('/logout', logoutController)
+router.get('/logout', authorizeUser, logoutController)
 
 /**
  * GET /
@@ -157,12 +158,12 @@ router.get('/about', (req, res) => {
  * GET /
  * Profile
 */
-router.get('/profile', profileController)
+router.get('/profile', authorizeUser, profileController)
 
 /**
  * POST /
  * Submit post
 */
-router.post('/profile/submit-post', submitPostController)
+router.post('/profile/submit-post', authorizeUser, submitPostController)
 
 module.exports = router
