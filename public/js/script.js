@@ -50,13 +50,12 @@ document.addEventListener('DOMContentLoaded', function () {
   handleForm('login')
 })
 
-function onClickEdit (btn, title, content) {
-  console.log(title)
-  console.log(content)
-  document.querySelector('.edit-title').placeholder = title
-  document.querySelector('.edit-content').placeholder = content
+function onClickEdit (btn, postTitle, postContent, postId) {
+  document.querySelector('.edit-title').placeholder = postTitle
+  document.querySelector('.edit-content').placeholder = postContent
+  document.querySelector('.edit-form').action = `/profile/edit-post/${postId}`
+
   const modal = btn.getAttribute('data-modal')
   const modalElement = document.getElementById(modal)
-  // modalElement.
   modalElement.style.display = 'block'
 }

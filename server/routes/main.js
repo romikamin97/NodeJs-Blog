@@ -3,7 +3,7 @@ const router = express.Router()
 const Post = require('../models/post')
 
 const loginController = require('../controllers/login')
-const { profileController, submitPostController, deletePostController } = require('../controllers/profile')
+const { profileController, submitPostController, deletePostController, editPostController } = require('../controllers/profile')
 const logoutController = require('../controllers/logout')
 const authorizeUser = require('../middleware/authorization')
 const signupController = require('../controllers/signup')
@@ -141,5 +141,11 @@ router.post('/profile/submit-post', authorizeUser, submitPostController)
  * Delete post
 */
 router.post('/profile/delete-post/:id', authorizeUser, deletePostController)
+
+/**
+ * POST /
+ * Edit post
+*/
+router.post('/profile/edit-post/:id', authorizeUser, editPostController)
 
 module.exports = router

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5001
 connectDB()
 
 app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.use(express.json({ extended: true }))
 app.use(cookies())
 
 app.use(express.static('public'))
