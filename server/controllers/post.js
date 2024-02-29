@@ -11,7 +11,7 @@ async function postController (req, res) {
     if (!postData) {
       res.status(404).send()
     }
-    const commentsData = await Comment.find({ postId })
+    const commentsData = await Comment.find({ postId }).sort({ createdAt: -1 })
 
     const locals = {
       postData,

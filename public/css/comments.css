@@ -40,6 +40,10 @@ body {
     }
 }
 
+.comments_header {
+    font-family: "Georgia", sans-serif;
+}
+
 .comment_block {
     width: 65%;
     height: 100%;
