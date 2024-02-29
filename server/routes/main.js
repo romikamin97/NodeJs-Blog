@@ -6,12 +6,14 @@ const User = require('../models/User');
 const identifyUser = require('../middleware/IdentifyUser')
 
 const loginController = require("../controllers/login")
+const profileController = require("../controllers/profile");
+
 
 /**
  * GET /
  * HOME
 */
-router.get('', identifyUser, async (req, res) => {
+router.get('', async (req, res) => {
   try {
     const locals = {
       title: "NodeJs Blog",
@@ -161,23 +163,7 @@ router.get('/about', (req, res) => {
  * GET /
  * Profile
 */
-router.get('/Profile', async (req, res) => {
-  try {
-    let searchPredicates = [ { user: { $regex: new RegExp(User.username, 'i') } } ]
-
-    const data = await Post.find({
-      $or: searchPredicates
-    });
-    res.render('Profile', {
-    currentRoute: '/Profile',
-    data
-    });
-  
-    } catch (error) {
-      console.log(error);
-    }
-  
-  });
+router.get('/profile', profileController);
 
 
 
