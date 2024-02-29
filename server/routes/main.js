@@ -7,6 +7,7 @@ const identifyUser = require('../middleware/IdentifyUser')
 
 const loginController = require("../controllers/login")
 const profileController = require("../controllers/profile");
+const logoutController = require('../controllers/logout');
 
 
 /**
@@ -146,6 +147,12 @@ router.post('/signup', signupController);
  * login
  */
 router.post('/login', loginController);
+
+/*
+ * POST /
+ * logout
+ */
+router.get('/logout', logoutController);
 
 
 /**
