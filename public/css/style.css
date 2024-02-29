@@ -13,7 +13,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Georgia", sans-serif;
   color: var(--black);
   font-size: var(--font-size-base);
   background-color: #FAF5EE;
@@ -41,7 +41,7 @@ input[type="text"],
 input[type="search"],
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: "Georgia", sans-serif;
   font-size: 1rem;
   display: block;
   box-sizing: border-box;
@@ -121,6 +121,7 @@ img {
 }
 
 .author__heading {
+  font-family: "Georgia", sans-serif;
   margin-top: 10px;
   margin-bottom: 5px;
 }
