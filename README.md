@@ -1,3 +1,8 @@
+
+<img width="548" alt="צילום מסך 2024-03-03 ב-9 10 57" src="https://github.com/romikamin97/NodeJs-Blog/assets/161374080/6957f495-22bf-4ff8-8a44-7c5693907693">
+
+
+
 # Welcome to Romi's blog project!
 This is a small web app project written in JS using NodeJs, Express and MongoDB!
 One could register to the blog, write his own posts and edit or delete them. Without registering and logging in
